@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    ports:
+      - "86:80"
+    depends_on:
+      - app
